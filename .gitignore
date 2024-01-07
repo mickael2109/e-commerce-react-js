@@ -4,7 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-src/data/*
+create-react-app
 
 # testing
 /coverage
