@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import {  FaShoppingBag, FaShoppingCart } from 'react-icons/fa';
 
 const Navbar = ({ filter, setFiltering, count }) => {
@@ -7,7 +7,7 @@ const Navbar = ({ filter, setFiltering, count }) => {
         <div>
             <nav className='navbar '>
                 <div className='logo'>           
-                    <div><Link href=''><i><FaShoppingCart/></i>Mes Courses en Ligne</Link></div>
+                    <div><Link to='/'><i><FaShoppingCart/></i>Mes Courses en Ligne</Link></div>
                     <button className='navbar-toggler' type='button' data-toggle="collapse">
                         <span className='navbar-toggler-icon'></span>
                     </button>
@@ -24,11 +24,14 @@ const Navbar = ({ filter, setFiltering, count }) => {
                         </form>
                     </div>
                     <div className='menu-right'>
-                        <i><FaShoppingBag/></i>
-                        <span className='badge'>{count}</span>
+                        <Link to='/cart'>
+                            <i><FaShoppingBag/></i>
+                            <span className='badge'>{count}</span>
+                        </Link>
                     </div>
                 </div>
             </nav>
+            <Outlet/>
         </div>
     );
 };
