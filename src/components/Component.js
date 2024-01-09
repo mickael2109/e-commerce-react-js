@@ -115,7 +115,6 @@ export const Modal = ({ showModal, closeModal, item, addToCart, count }) =>{
 
 export const List = props =>{
     const { data, addToCart, count } = props
-    // const produits = data.find(categoryData => categoryData[0].category === category);
     return (
         <div className="col-sm">
             <div className="row">
