@@ -42,20 +42,18 @@ export const Card = props =>{
       setShowModal(false);
     };
     return (
-        <div className="col-sm-5">
+        <div className="card-item">
             <div className="card">
                 <div className="card-image">
-                    <img src={process.env.PUBLIC_URL+`./media/${item.category}/${item.image}`} width="170" height="170" alt={item.name}/>
+                    <img src={process.env.PUBLIC_URL+`./media/${item.category}/${item.image}`} alt={item.name}/>
                 </div>
                 <div className="card-body">
-                    <div className="row">
-                        <div className="col-sm-6">
-                            <h4>{item.name}</h4>
-                        </div>
-                        <div className="col-sm-6 ">
-                            <p>£{item.price}/{item.unit}</p>
-                            <button className="btn btn-warning btn-sm" onClick={openModal} data-toggle="modal" data-target={`#${item.ref}`}> View Product</button>
-                        </div>
+                    <div className="card-title">
+                        <h4>{item.name}</h4>
+                    </div>
+                    <div className="card-detail ">
+                        <p>£{item.price}/{item.unit}</p>
+                        <button className="btn btn-warning btn-sm" onClick={openModal} data-toggle="modal" data-target={`#${item.ref}`}> View Product</button>
                     </div>
                 </div>
             </div>
@@ -117,7 +115,7 @@ export const List = props =>{
     const { data, addToCart, count } = props
     return (
         <div className="col-sm">
-            <div className="row">
+            <div className="card-container">
                 {
                     data.map((item, index) => <Card key={index} item={item} addToCart={addToCart} count={count}/> )
                 }

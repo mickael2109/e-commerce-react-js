@@ -8,9 +8,9 @@ const Navbar = ({ filter, setFiltering, count }) => {
             <nav className='navbar '>
                 <div className='logo'>           
                     <div><Link to='/'><i><FaShoppingCart/></i>Mes Courses en Ligne</Link></div>
-                    <button className='navbar-toggler' type='button' data-toggle="collapse">
+                    {/* <button className='navbar-toggler' type='button' data-toggle="collapse">
                         <span className='navbar-toggler-icon'></span>
-                    </button>
+                    </button> */}
                 </div>
 
                 <div className='navbar-right' id='navbarSupportedContent'>
