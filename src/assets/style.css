@@ -8,9 +8,9 @@
 .navbar{
     display: flex;
     flex-direction: row;
-    justify-content: space-between !important;
+    justify-content: space-around !important;
     background-color: #FFB90A;
-    padding: 10px 30px 10px 30px;
+    padding: 10px 0px 10px 0px;
 }
 nav .logo{
     display: flex;
@@ -30,7 +30,6 @@ nav .navbar-right{
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-    width: 20%;
 }
     .navbar-right a{
         color: black;
@@ -44,7 +43,49 @@ nav .navbar-right{
         margin: 13px 0 0 -15px;
         border-radius: 50%;
     }
+    .navbar-right input{
+        border: 0;
+        border-radius: 8px;
+        height: 40px;
+        padding: 5px;
+    }
+
+    @media screen and (max-width:800px) {
+        .navbar{
+            flex-direction: column;
+        }
+     }
+     @media screen and (max-width:350px) {
+        .navbar-right .menu-right i{
+            font-size: 20px;
+        }
+        .navbar-right .menu-right .badge{
+            margin: 8px 0 0 -10px;
+            border-radius: 50%;
+            font-size: 8px;
+        }
+        .navbar-right input{
+            border-radius: 5px;
+            height: 25px;
+            font-size: 14px
+        }
+        .navbar .logo a{
+            font-size: 20px;
+        }
+     }
        
+
+
+
+
+/* LIST */
+.card-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
 
 /* CARD */
 .card{
@@ -53,12 +94,54 @@ nav .navbar-right{
     align-items: center;
     justify-content: center;
     margin: 10px;
+    width: 300px;
 }
+    .card-image img{
+        width: 150px;
+        height: 150px;
+    }
+    .card .card-body{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    @media screen and (max-width:350px) {
+       .card{
+            width: 220px;
+            height: 200px;
+       }
+            .card-image img{
+                width: 100px;
+                height: 90px;
+            }
+            .card .card-body{
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+                .card-body h4{
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+                .card-body .card-detail{
+                    font-size: 12px
+                }
+                .card-detail button{
+                    font-size: 10px;
+                }
+    }
+
+
 
 /* SLIDE MENU */
 .sidebar ul li.active{
     font-weight: 800;
 }
+
+
+
 
 /* MODAL */
 .modal-overlay {
@@ -87,18 +170,65 @@ nav .navbar-right{
   
 
   /* CART PAGE */
-  .cart-page li{
-    margin-left: 30px;
+  .cart-page{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cart-page .order-summary{
+    width: 250px;
+    margin: 20px 0 0 20px;
   }
   .cart-page .order-summary .list-group-item{
     background-color: #f6f6f6;
   }
 
   .cart-page button {
-    background-color: crimson;
     width: 100%;
     border: 0;
     padding: 5px;
     border-radius: 5px;
     color: #fff;
   }
+
+  .cart-page .list-group-flex{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  table tr td img{
+    width: 120px;
+    height: 120px;
+}
+
+  @media screen and (max-width:800px) {
+    .cart-page{
+        flex-direction: column;
+    }
+    .cart-page .order-summary{
+        width: 400px;
+        margin: 20px 0 0 0px;
+    }
+    table tr td img{
+        width: 50px;
+        height: 50px;
+    }
+ }
+
+ @media screen and (max-width:450px) {
+    table tr th{
+        font-size: 12px;
+    }
+    table tr td{
+        font-size: 10px;
+    }
+    table tr td .btn{
+        font-size: 8px;
+    }
+    .cart-page .order-summary{
+        width: 80%;
+        margin: 20px 0 0 0px;
+      }
+ }
