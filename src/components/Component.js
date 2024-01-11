@@ -4,7 +4,8 @@ import 'jquery';
 import 'popper.js';
 import { useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
-
+import { useDispatch } from 'react-redux';
+import { addtoCart } from '../lib/actions';
 
 
 export const SildeMenu = ( { loadCategory, category }) =>{
@@ -31,7 +32,7 @@ export const Footer = () =>{
 }
 
 export const Card = props =>{
-    const { item, addToCart, count } = props
+    const { item, count } = props
     const [showModal, setShowModal] = useState(false);
 
     const openModal = () => {
@@ -57,20 +58,24 @@ export const Card = props =>{
                     </div>
                 </div>
             </div>
-            <Modal showModal={showModal} closeModal={closeModal} item={item} addToCart={addToCart} count={count}/>
+            <Modal showModal={showModal} closeModal={closeModal} item={item} count={count}/>
         </div>
     )
 }
 
-export const Modal = ({ showModal, closeModal, item, addToCart, count }) =>{
-
+export const Modal = ({ showModal, closeModal, item }) =>{
     const [qty, setQty] = useState(1)
+    const dispatch = useDispatch()
+    const add = (item, quantity) => {
+        dispatch(addtoCart(item, quantity))
+    }  
+
     return (
-        <>
+        <div className=''>
             {
                 showModal && (
                     <div className="modal-overlay" onClick={closeModal}>
-                        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-contents" onClick={(e) => e.stopPropagation()}>
                             <div className="">
                                 <div className="modal-header">
                                     <h5 className="modal-title" id="staticBackdropLabel">{item.name}</h5>
@@ -90,9 +95,9 @@ export const Modal = ({ showModal, closeModal, item, addToCart, count }) =>{
                                             </p>
                                             <h3 className="price">£{item.price}/{item.unit}</h3>
                                             <div className="btn-group" role="group" aria-label="Basic example">
-                                                <button type="button" className="btn btn-secondary" onClick={() => setQty(count > 1 ? count - 1 : 1)}>-</button>
+                                                <button type="button" className="btn btn-secondary" onClick={() => setQty(qty > 1 ? qty - 1 : 1)}>-</button>
                                                 <span className="btn btn-light qty">{qty}</span>
-                                                <button type="button" className="btn btn-secondary" onClick={() => setQty(count + 1)}>+</button>
+                                                <button type="button" className="btn btn-secondary" onClick={() => setQty(qty + 1)}>+</button>
                                             </div>
                                             <br />
                                         </div>
@@ -100,24 +105,29 @@ export const Modal = ({ showModal, closeModal, item, addToCart, count }) =>{
                                 </div>
                                 <div className="modal-footer">
                                     <button className="btn btn-secondary" onClick={closeModal}>Close</button>
-                                    <button type="button" className="btn btn-success" onClick={() => addToCart(count + 1)}>Add to Cart</button>
+                                    <button type="button" className="btn btn-success" onClick={() => {
+                                                                                            add(item, qty)
+                                                                                            closeModal()
+                                                                                    }}>
+                                        Add to Cart
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 )
             }
-        </>         
+        </div>         
     )
 }
 
 export const List = props =>{
-    const { data, addToCart, count } = props
+    const { data, updateCart } = props
     return (
         <div className="col-sm">
             <div className="card-container">
                 {
-                    data.map((item, index) => <Card key={index} item={item} addToCart={addToCart} count={count}/> )
+                    data.map((item, index) => <Card key={index} item={item} updateCart={updateCart}/> )
                 }
             </div> 
         </div>

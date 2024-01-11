@@ -22,10 +22,6 @@ const Layout = () => {
         setFiltered(reuslts )
     }
 
-    // useEffect(() => {
-    //     // setFiltering(isFiltering)
-    //     console.log(isFiltering)
-    // })
 
     return (
         <div>   
