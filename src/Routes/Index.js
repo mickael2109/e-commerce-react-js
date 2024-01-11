@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import Home from '../views/Home';
-import CartPage from '../views/CartPage';
+import Home from '../views/components/Home';
+import CartPage from '../views/components/CartPage';
 import { useState } from 'react';
 import { list } from '../data/data2';
 
-const PublicRoute = () => {
+const Index = () => {
 
     const [category, setCategory] = useState('Légumes')
     const [isFiltering, setFiltering] = useState(false)
@@ -44,4 +44,4 @@ const PublicRoute = () => {
     );
 };
 
-export default PublicRoute;
+export default Index;

@@ -1,22 +1,24 @@
 import React from 'react';
 import { FaChevronRight } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 
-const Row = () => {
+const Row = ( props ) => {
+    const {quantity, details} = props.item
     return(
         <tr>
-            <td><img src={process.env.PUBLIC_URL+`./media/fruits/citron.png`} width="170" height="170" alt='citron'/></td>
-            <td>ref</td>
-            <td>£ price</td>
+            <td><img src={process.env.PUBLIC_URL+`./media/${details.category}/${details.image}`} width="170" height="170" alt='citron'/></td>
+            <td>{details.ref}</td>
+            <td>£{details.price}</td>
             <td>
                 <div className='btn-group' role='group' aria-label='Basic example'>
                     <button type='button' className="btn btn-secondary">-</button>
-                    <span className="btn btn-light qty">1</span>
+                    <span className="btn btn-light qty">{quantity}</span>
                     <button type="button" className="btn btn-secondary">+</button>
                 </div>
             </td>
-            <td>£2.99</td>
+            <td>£{quantity * details.price}</td>
             <td><button type='button'className='btn btn-danger remove'>X</button></td>
         </tr>
     )
@@ -24,6 +26,8 @@ const Row = () => {
 
 
 const Table = () => {
+    const items = useSelector(state => state.items)
+
     return(
         <table>
             <tr>
@@ -33,8 +37,12 @@ const Table = () => {
                 <th width="150">Quantity</th>
                 <th width="200">Total</th>
             </tr>
-            <Row/>
-            <Row/>
+            {
+                items.map(item => {
+                    return(
+                        <Row item={item}/>
+                    )})
+            }
         </table>
     )
 }

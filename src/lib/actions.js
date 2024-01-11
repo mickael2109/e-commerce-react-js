@@ -14,7 +14,7 @@ const uid = () => Math.random().toString(11).slice(2)
 export function addtoCart(item, quantity){
     return{
         type: actions.ADD_TO_CART,
-        payload: {id: uid, quantity: quantity, details: item}
+        payload: {id: uid(), quantity: quantity, details: item}
     }
 }
 

@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import {  FaShoppingBag, FaShoppingCart } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
+
 
 const Navbar = ({ filter, setFiltering, count }) => {
+    const items = useSelector(state => state.items)
+
     return (
         <div>
             <nav className='navbar '>
@@ -24,9 +28,9 @@ const Navbar = ({ filter, setFiltering, count }) => {
                         </form>
                     </div>
                     <div className='menu-right'>
-                        <Link to='/cart'>
+                         <Link to='/cart'>
                             <i><FaShoppingBag/></i>
-                            <span className='badge'>{count}</span>
+                            <span className='badge'>{items.length > 0 && items.length}</span>
                         </Link>
                     </div>
                 </div>
