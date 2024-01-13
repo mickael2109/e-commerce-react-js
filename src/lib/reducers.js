@@ -9,7 +9,7 @@ export default function onlineStoreApp(state = initialState, action){
         case actions.ADD_TO_CART : return Object.assign({}, state, { items : [...state.items, action.payload]})
         case actions.UPDATE_CART : return Object.assign({}, state, {
             items : state.items.map(item => {
-                return item.id === action.payload.item.id ? 
+                return item.id === action.payload.id ? 
                     Object.assign({}, item, {
                         quantity: action.payload.quantity
                     }) : item ;
@@ -17,7 +17,7 @@ export default function onlineStoreApp(state = initialState, action){
         })
         case actions.REMOVE_FROM_CART : return Object.assign({}, state, {
             items: state.items.filter(item => {
-                return item.id !== action.payload.id
+                return item.id !== action.payload
             })
         })
         default :return state
