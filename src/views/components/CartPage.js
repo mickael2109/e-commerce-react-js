@@ -9,14 +9,17 @@ const Row = ( props ) => {
     const {id, quantity, details} = props.item
     const [qty, setQty] = useState(quantity)
     const dispatch = useDispatch()
-    const update = ()  => {
-        dispatch(updateCart(id, qty))
-        debugger;
+    const update = (action)  => {
+        if(action === 'increment') { setQty(qty + 1)}
+        if(action === 'decrement') { setQty(qty - 1)}
     }  
     const remove = id => {
         dispatch(removeCart(id))
     }
 
+    useEffect(() => {
+        dispatch(updateCart(id, qty));
+    }, [qty])
     return(
         <tr key={id}>
             <td><img src={process.env.PUBLIC_URL+`./media/${details.category}/${details.image}`} width="170" height="170" alt='citron'/></td>
@@ -25,18 +28,12 @@ const Row = ( props ) => {
             <td>
                 <div className='btn-group' role='group' aria-label='Basic example'>
                     <button type='button' className="btn btn-secondary" onClick={() => { 
-                        if(qty>1){
-                            setQty(qty - 1)
-                            update(qty - 1 ) 
-                        } }}>-</button>
+                        if(qty>1){ update('decrement') } }}>-</button>
                     <span className="btn btn-light qty">{qty}</span>
-                    <button type="button" className="btn btn-secondary" onClick={() => {
-                        setQty(qty + 1)
-                        update(qty + 1 )  
-                    }}>+</button>
+                    <button type="button" className="btn btn-secondary" onClick={() => { update('increment')}}>+</button>
                 </div>
             </td>
-            <td>£{quantity * details.price}</td>
+            <td>£{(quantity * details.price).toFixed(2)}</td>
             <td><button type='button'className='btn btn-danger remove' onClick={() => remove(id)}>X</button></td>
         </tr>
     )
@@ -66,7 +63,7 @@ const Table = ({ items }) => {
 
 const CartPage = () => {
     const items = useSelector(state => state.items)
-    const [subtotal, setSubTotal] = useState(0.00)
+    const [subTotal, setSubTotal] = useState(0.00)
     const [total, setTotal] = useState(0.00)
     const shipping = 10.00
 
@@ -75,9 +72,9 @@ const CartPage = () => {
             return item.quantity * item.details.price
         })
         setSubTotal(totals.reduce((item1, item2) => item1 + item2, 0))
-        setTotal(subtotal + shipping)
+        setTotal(subTotal + shipping)
         
-    })
+    }, [items, subTotal, total])
 
     return (
         <div className='container'>
@@ -92,7 +89,7 @@ const CartPage = () => {
                         <li className='list-group-item'>
                             <ul className='list-group-flex'>
                                 <li className='text-left'>Subtotal</li>
-                                <li className='text-right'>£{subtotal.toFixed(2)}</li>
+                                <li className='text-right'>£{subTotal.toFixed(2)}</li>
                             </ul>
                             <ul className='list-group-flex'>
                                 <li className='text-left'>Shipping</li>
@@ -107,7 +104,7 @@ const CartPage = () => {
                         <li className='list-group-item'>
                             <ul className='list-group flex'>
                                 <li className='text-left'>Total</li>
-                                <li className='text-right'>£{subtotal === 0.00 ? "0.00" : total.toFixed(2)}</li>
+                                <li className='text-right'>£{subTotal === 0.00 ? "0.00" : total.toFixed(2)}</li>
                             </ul>
                         </li>
                     </ul>

@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { list } from './data/data2';
 import Navbar from './components/Navbar';
 import Home from './views/components/Home';
 import CartPage from './views/components/CartPage';
 
 function App(props) {
-  const { items, onUpdateCart } = props
+  const { items, saveLocalStorage } = props
   const [category, setCategory] = useState('Légumes')
   const [isFiltering, setFiltering] = useState(false)
   const [filtered, setFiltered] = useState(false)
@@ -24,9 +24,9 @@ function App(props) {
       setFiltered(reuslts )
   }
  
-  const update = () => {
-
-  }
+  useEffect(() => {
+    saveLocalStorage(items)
+  }, [items])
 
   return (
       <BrowserRouter>
@@ -35,8 +35,6 @@ function App(props) {
                   <Route index element={ <Home 
                                                   category={category} 
                                                   loadCategory={loadCategory} 
-                                                  updateCart={update}
-                                                  // count={count}
                                                   list={list}
                                                   isFiltering={isFiltering}
                                                   filtered={filtered}/>
