@@ -12,4 +12,4 @@ export const AppContainer = connect(
             // onUpdateCart : (item, quantity) => dispatch(updateCart(item, quantity)),
         }
     }
-)(App)
+)(App)   

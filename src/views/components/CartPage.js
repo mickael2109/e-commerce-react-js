@@ -108,10 +108,10 @@ const CartPage = () => {
                             </ul>
                         </li>
                     </ul>
-                    <Link to="">
-                        <button type='button' className='btn btn-danger' style={{background:'crimson'}}disabled='true'>
-                            Checkout
-                        </button>
+                    <Link to="/checkout" className={`checkout ${!items.length && 'disabled'}`}>
+                        <div className='place-btn'>
+                                Checkout
+                        </div>
                     </Link>
                 </div>
             </div>
