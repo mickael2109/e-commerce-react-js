@@ -188,14 +188,6 @@ nav .navbar-right{
     background-color: #f6f6f6;
   }
 
-  .cart-page button {
-    width: 100%;
-    border: 0;
-    padding: 5px;
-    border-radius: 5px;
-    color: #fff;
-  }
-
   .cart-page .list-group-flex{
     display: flex;
     justify-content: space-between;
@@ -234,4 +226,22 @@ nav .navbar-right{
         width: 80%;
         margin: 20px 0 0 0px;
       }
+ }
+
+.place-btn{
+    margin-top: 10px;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: crimson;
+}
+
+ .checkout{
+    color: #fff;
+    text-decoration: none;
+ }
+
+ .disabled{
+    opacity: 0.67;
  }

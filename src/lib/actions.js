@@ -4,7 +4,8 @@
 export const actions = {
     ADD_TO_CART: 'ADD_TO_CART',
     UPDATE_CART: 'UPDATE_CART',
-    REMOVE_FROM_CART: 'REMOVE_FROM_CART'
+    REMOVE_FROM_CART: 'REMOVE_FROM_CART',
+    SAVE_CART: 'SAVE_CART'
 }
 
 /*
@@ -18,16 +19,23 @@ export function addtoCart(item, quantity){
     }
 }
 
-export function updateCart(item, quantity){
+export function updateCart(id, quantity){
     return{
         type: actions.UPDATE_CART,
-        payload: {item: item, quantity}
+        payload: {id: id, quantity}
     }
 }
 
-export function removeCart(item){
+export function removeCart(id){
     return{
         type: actions.REMOVE_FROM_CART,
-        payload: item
+        payload: id
+    }
+}
+
+export function saveCart(items){
+    return{
+        type: actions.SAVE_CART,
+        payload: {items: items}
     }
 }

@@ -1,12 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { list } from './data/data2';
 import Navbar from './components/Navbar';
 import Home from './views/components/Home';
 import CartPage from './views/components/CartPage';
+import Checkout from './views/components/Checkout';
+import UserProfileContextProvider from './lib/UserProfileContext';
 
 function App(props) {
-  const { items, onUpdateCart } = props
+  const { items, saveLocalStorage } = props
   const [category, setCategory] = useState('Légumes')
   const [isFiltering, setFiltering] = useState(false)
   const [filtered, setFiltered] = useState(false)
@@ -24,36 +26,29 @@ function App(props) {
       setFiltered(reuslts )
   }
  
-  const update = () => {
-
-  }
+  useEffect(() => {
+    saveLocalStorage(items)
+  }, [items])
 
   return (
       <BrowserRouter>
-          <Routes>
-              <Route element={<Navbar filter={filterResults} setFiltering={setFiltering} count={count}/>}>
-                  <Route index element={ <Home 
-                                                  category={category} 
-                                                  loadCategory={loadCategory} 
-                                                  updateCart={update}
-                                                  // count={count}
-                                                  list={list}
-                                                  isFiltering={isFiltering}
-                                                  filtered={filtered}/>
-                                                  }/>
-                  <Route path='/cart' element={<CartPage/>}/>
-              </Route>
-          </Routes>
-      </BrowserRouter>
+           <Routes>
+            {/* <UserProfileContextProvider> */}
+                <Route element={<Navbar filter={filterResults} setFiltering={setFiltering} count={count}/>}>
+                    <Route index element={ <Home 
+                                                    category={category} 
+                                                    loadCategory={loadCategory} 
+                                                    list={list}
+                                                    isFiltering={isFiltering}
+                                                    filtered={filtered}/>
+                                                    }/>
+                    <Route path='/cart' element={<CartPage/>}/>
+                    <Route path='/checkout' element={<Checkout/>}/>
+                </Route>
+            {/* </UserProfileContextProvider> */}
+           </Routes>
+       </BrowserRouter>
   );
-  // return (
-  //   <BrowserRouter>
-  //     <Routes>
-  //         <Route path='/*' element={<Index/>}/>
-  //     </Routes>   
-  //   </BrowserRouter>
-    
-  // );
 }
 
 export default App;
