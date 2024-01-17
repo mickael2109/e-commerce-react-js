@@ -10,10 +10,10 @@ export const UserProfileContext = createContext({
     setUserProfileContext: info => {}
 })
 
-const UserProfileContextProvider =  ({ childreen }) => {
+const UserProfileContextProvider =  ({ children  }) => {
     const userProfileState = {
-        firstname:'',
-        lastname:'',
+        firstName:'',
+        lastName:'',
         email:'',
         adresse:'',
         zipCode:'',
@@ -21,18 +21,13 @@ const UserProfileContextProvider =  ({ childreen }) => {
         setUserProfileContext: info => 
             setUserProfile(prevState => ({
             ...prevState,
-            firstname : info.firstname,
-            lastname : info.lastname,
-            email : info.email,
-            adresse : info.adresse,
-            zipCode : info.zipCode,
-            city : info.city,
+            [Object.keys(info)] : Object.values(info)[0]
         }))
     }
 
     const [userProfile, setUserProfile] = useState(userProfileState)
 
-    return (<UserProfileContextProvider value={userProfile}>{ childreen }</UserProfileContextProvider>)
+    return (<UserProfileContext.Provider value={userProfile}>{ children  }</UserProfileContext.Provider>)
 } 
 
 export default UserProfileContextProvider;

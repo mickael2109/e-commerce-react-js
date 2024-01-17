@@ -1,11 +1,12 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, Router } from 'react-router-dom';
+import { Fragment, useEffect, useState } from 'react';
 import { list } from './data/data2';
 import Navbar from './components/Navbar';
 import Home from './views/components/Home';
 import CartPage from './views/components/CartPage';
 import Checkout from './views/components/Checkout';
 import UserProfileContextProvider from './lib/UserProfileContext';
+import Confirm from './views/components/Confirm';
 
 function App(props) {
   const { items, saveLocalStorage } = props
@@ -31,23 +32,29 @@ function App(props) {
   }, [items])
 
   return (
+
+    <Fragment>
       <BrowserRouter>
-           <Routes>
-            {/* <UserProfileContextProvider> */}
-                <Route element={<Navbar filter={filterResults} setFiltering={setFiltering} count={count}/>}>
-                    <Route index element={ <Home 
-                                                    category={category} 
-                                                    loadCategory={loadCategory} 
-                                                    list={list}
-                                                    isFiltering={isFiltering}
-                                                    filtered={filtered}/>
-                                                    }/>
-                    <Route path='/cart' element={<CartPage/>}/>
-                    <Route path='/checkout' element={<Checkout/>}/>
-                </Route>
-            {/* </UserProfileContextProvider> */}
-           </Routes>
-       </BrowserRouter>
+        <UserProfileContextProvider>
+          <Routes>
+            <Route element={ <Navbar filter={filterResults} setFiltering={setFiltering} count={count} />}>
+              <Route index element={
+                  <Home
+                    category={category}
+                    loadCategory={loadCategory}
+                    list={list}
+                    isFiltering={isFiltering}
+                    filtered={filtered}
+                  />}/>
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/confirm" element={<Confirm />} />
+            </Route>
+          </Routes>
+        </UserProfileContextProvider>
+      </BrowserRouter>
+    </Fragment>
+
   );
 }
 
