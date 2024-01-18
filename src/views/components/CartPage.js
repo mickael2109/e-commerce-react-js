@@ -52,9 +52,9 @@ const Table = ({ items }) => {
                 <th width="200">Total</th>
             </tr>
             {
-                items.map(item => {
+                items.map((item, index) => {
                     return(
-                        <Row item={item}/>
+                        <Row key={index} item={item}/>
                     )})
             }
         </table>
@@ -108,7 +108,7 @@ const CartPage = () => {
                             </ul>
                         </li>
                     </ul>
-                    <Link to="/checkout" className={`checkout ${!items.length && 'disabled'}`}>
+                    <Link to={`${items.length === 0 ? "/cart" : "/checkout"}`} className={`checkout ${!items.length && 'disabled'}`}>
                         <div className='place-btn'>
                                 Checkout
                         </div>

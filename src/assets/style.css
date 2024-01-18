@@ -167,9 +167,46 @@ nav .navbar-right{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     text-align: center;
     max-width: 90%;
-    /* width: 500px; */
     z-index: 9999;
   }
+  .modal-footer{
+    margin-top: 20px;
+  }
+    .modal-footer button{
+        margin-left: 10px;
+    }
+
+    @media screen and (max-width:500px) {
+      .modal-body .lead, .price{
+        font-size: 14px;
+      }
+      .modal-body .btn-group .btn{
+        font-size: 12px;
+      }
+      .modal-footer .btn{
+        font-size: 12px;
+      }
+    }
+    @media screen and (max-width:350px) {
+        .modal-header .modal-title{
+            font-size: 14px;
+        }
+        .modal-body img{
+            width: 100px;
+            height: 100px;
+          }
+        .modal-body .lead, .price{
+          font-size: 12px;
+        }
+        .modal-body .btn-group .btn{
+          font-size: 10px;
+        }
+        .modal-footer .btn{
+          font-size: 10px;
+        }
+      }
+
+
   
 
   /* CART PAGE */
@@ -225,7 +262,13 @@ nav .navbar-right{
     .cart-page .order-summary{
         width: 80%;
         margin: 20px 0 0 0px;
-      }
+    }
+    .list-group-item{
+        font-size: 12px;
+    }
+    .checkout{
+        font-size: 12px;
+    }
  }
 
 .place-btn{
@@ -234,7 +277,7 @@ nav .navbar-right{
     padding: 5px;
     border-radius: 5px;
     text-align: center;
-    background-color: crimson;
+    background-color: green;
 }
 
  .checkout{
@@ -245,3 +288,32 @@ nav .navbar-right{
  .disabled{
     opacity: 0.67;
  }
+
+
+ /* CHECKOUT PAGE */
+ .checkout-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+ }
+    .checkout-page .checkout-content{
+        width: 50%;
+    }
+
+    @media screen and (max-width:600px) {
+        .checkout-page .checkout-content{
+            width: 80%;
+        }
+    }
+    @media screen and (max-width:400px) {
+        .checkout-page .checkout-content .input-checkout{
+            flex-direction: column;
+        }
+
+        .checkout-content input{
+            margin-top: 5px;
+            font-size: 10px;
+        }
+    }

@@ -27,6 +27,13 @@ export default function onlineStoreApp(state = initialState, action){
         case actions.SAVE_CART: 
             saveToLocalStorage(action.payload.items)
             return state
+
+        case actions.RESET_CART: 
+            saveToLocalStorage([])
+            return Object.assign({}, state, { 
+                items: [] 
+            })
+
         default :return state
     }
 }
