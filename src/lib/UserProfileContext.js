@@ -1,8 +1,8 @@
 import React, { createContext, useState } from 'react';
 
 export const UserProfileContext = createContext({
-    firstname:'',
-    lastname:'',
+    firstName:'',
+    lastName:'',
     email:'',
     adresse:'',
     zipCode:'',

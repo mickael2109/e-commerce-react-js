@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Router } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Fragment, useEffect, useState } from 'react';
 import { list } from './data/data2';
 import Navbar from './components/Navbar';
