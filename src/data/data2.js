@@ -48,7 +48,7 @@ const Fresh = [
     {
         ref: "1",
         category:"Produits Frais",
-        name: "Panneaux",
+        name: "Cannard",
         price: 30.99,
         unit:"pièce",
         image: "0.png"
@@ -56,10 +56,26 @@ const Fresh = [
     {
         ref: "2",
         category:"Produits Frais",
-        name: "Panneaux 2",
-        price: 59.99,
+        name: "Fromage",
+        price: 10.99,
         unit:"pièce",
         image: "1.png"
+    },
+    {
+        ref: "3",
+        category:"Produits Frais",
+        name: "Viande",
+        price: 15.99,
+        unit:"pièce",
+        image: "2.png"
+    },
+    {
+        ref: "4",
+        category:"Produits Frais",
+        name: "Poisson",
+        price: 12.99,
+        unit:"pièce",
+        image: "3.png"
     },
 ]
 
@@ -67,16 +83,16 @@ const Epicerie = [
     {
         ref: "1",
         category:"Epicerie",
-        name: "Home",
-        price: 30.99,
+        name: "Chili",
+        price: 10.99,
         unit:"pièce",
         image: "0.png"
     },
     {
         ref: "2",
         category:"Epicerie",
-        name: "Test 2",
-        price: 59.99,
+        name:"Tomate",
+        price: 2.99,
         unit:"pièce",
         image: "1.png"
     },
