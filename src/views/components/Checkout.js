@@ -64,12 +64,9 @@ const Checkout = () => {
                         <br/>
                         <Link to={`${!isValid ? "/checkout" : "/confirm"}`} className={` ${!isValid && 'disabled'} checkout`}>
                             <div className='place-btn'>
-                                    Confirm
+                                    Confirmer
                             </div>
                         </Link>
-                        {/* <button type='button' className='btn btn-danger' style={{background:'crimson'}}>
-                            <Link to=''>Confirm</Link>
-                        </button> */}
                     </form>
                 </div>
             </div>
